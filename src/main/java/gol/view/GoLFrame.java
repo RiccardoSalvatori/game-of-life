@@ -33,7 +33,7 @@ public class GoLFrame extends JFrame implements GoLView {
     }
 
     private static class GoLPanel extends JPanel {
-        private GoLGrid golGrid;
+        private final GoLGrid golGrid;
         private final Label golInfoLabel;
         private World world = new World(Collections.emptySet());
 
@@ -113,9 +113,9 @@ public class GoLFrame extends JFrame implements GoLView {
                     final int rectx = x * xSize;
                     final int recty = y * ySize;
                     if (x == gridSize / 2 && y == gridSize / 2) {
-                        drawViewCell(g, xSize, ySize, rectx, recty);
+                        drawViewPointerCell(g, xSize, ySize, rectx, recty);
                     } else {
-                        drawGameOfLifeCellCell(g, xSize, ySize, x, y, rectx, recty);
+                        drawGameOfLifeCell(g, xSize, ySize, x, y, rectx, recty);
                     }
 
 
@@ -124,7 +124,7 @@ public class GoLFrame extends JFrame implements GoLView {
             g.dispose();
         }
 
-        private void drawGameOfLifeCellCell(Graphics g, int xSize, int ySize, int x, int y, int rectx, int recty) {
+        private void drawGameOfLifeCell(Graphics g, int xSize, int ySize, int x, int y, int rectx, int recty) {
             final int worldx = x + this.xGridOrig;
             final int worldy = y + this.yGridOrig;
             if (this.world.isAlive(worldx, worldy)) {
@@ -134,7 +134,7 @@ public class GoLFrame extends JFrame implements GoLView {
             }
         }
 
-        private void drawViewCell(Graphics g, int xSize, int ySize, int rectx, int recty) {
+        private void drawViewPointerCell(Graphics g, int xSize, int ySize, int rectx, int recty) {
             final Color prev = g.getColor();
             g.setColor(Color.RED);
             g.fillRect(rectx, recty, xSize, ySize);

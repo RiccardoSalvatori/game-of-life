@@ -28,12 +28,10 @@ public interface GameOfLife {
         return countSignals(allSignals(liveCells))
                 .entrySet().stream()
                 .filter(e -> {
-                    CellState nextState;
-                    if(liveCells.contains(e.getKey())) {
-                        nextState = nextState(CellState.ALIVE, e.getValue());
-                    } else {
-                        nextState = nextState(CellState.DEAD, e.getValue());
-                    }
+                    final Long aliveNeighbours = e.getValue();
+                    final CellState nextState = liveCells.contains(e.getKey()) ?
+                            nextState(CellState.ALIVE, aliveNeighbours) :
+                            nextState(CellState.DEAD, aliveNeighbours);
                     return CellState.ALIVE.equals(nextState);
                 })
                 .map(Map.Entry::getKey)

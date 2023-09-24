@@ -1,11 +1,6 @@
 package gol.view;
 
-import gol.model.Cell;
 import gol.model.World;
-
-import java.util.List;
-
-import static gol.model.Cell.cell;
 
 public class ConsoleView implements GoLView {
     @Override
