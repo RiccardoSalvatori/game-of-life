@@ -188,7 +188,7 @@ public class GoLFrame extends JFrame implements GoLView {
                 this.xGridOrig -= 1;
             } else if (keyCode == VK_RIGHT) {
                 this.xGridOrig += 1;
-            } 
+            }
             repaint();
         }
 
